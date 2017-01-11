@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Greetings!</title>
+  <style rel="stylesheet" type="text/css">
+    html, body{margin:0;height:100%;}
+    body{
+      font-family:'Courier New';
+      overflow:scroll-x;
+      background: linear-gradient(
+        90deg, #543958 0%,
+        #a06060 25%,#bea27b 50%,
+        #9ca898 75%,#506d8d 100%) no-repeat;
+      background-position: fixed;
+      background-size: 200% auto;
+      -webkit-animation: gradient 60s linear
+        infinite alternate;
+      -ms-animation: gradient 60s linear
+        infinite alternate;
+      -moz-animation: gradient 60s linear
+        infinite alternate;
+      -o-animation: gradient 60s linear
+        infinite alternate;
+    }
+    @-webkit-keyframes gradient{
+      0%{background-position:0% 0%}
+      50%{background-position:100% 0%}
+      100%{background-position:0% 0%}
+    }
+    @-ms-keyframes gradient{
+      0%{background-position:0% 0%}
+      50%{background-position:100% 0%}
+      100%{background-position:0% 0%}
+    }
+    @-o-keyframes gradient{
+      0%{background-position:0% 0%}
+      50%{background-position:100% 0%}
+      100%{background-position:0% 0%}
+    }
+    @-moz-keyframes gradient{
+      0%{background-position:0% 0%}
+      50%{background-position:100% 0%}
+      100%{background-position:0% 0%}
+    }
+    #background{
+    	width: 100%;height: 100%;
+    	opacity:0.1;
+    	position: absolute;
+    	background: url("Cover.png") no-repeat;
+    	background-size: auto 100%;
+    }
+    .wrap{
+      height:100%;
+      position:relative;left:0;right:0;
+      margin:auto;
+    }
+    .cardCont{
+      width:100%;height:90%;
+      position:relative;top:2%;
+      perspective:3000px;
+    }
+    .cards{
+      height:100%;
+      position:absolute;left:50%;
+    }
+    .leftCard{
+      width:49%;
+      z-index:2;
+      transform-style:preserve-3d;
+      transform-origin:0%;
+      transition:1s;
+    }
+    .card-open{
+      transform:rotateY(-150deg);
+    }
+    .leftCard .cardSides{
+      width:100%;height:100%;
+      position:absolute;
+      backface-visibility:hidden;
+    }
+    .leftCard .front .cardColor{
+      background:coral;position:absolute;
+    }
+    .leftCard .back .cardColor{
+      background:#FFD199;position:absolute;
+    }
+    .posL{
+      width:30%;height:100%;
+    }
+    .posR{
+      width:30%;height:100%;right:0;
+    }
+    .posT{
+      width:100%;height:40%;top:0
+    }
+    .posB{
+      width:100%;height:20%;bottom:0
+    }
+    .leftCard .front{
+      z-index:10;
+    }
+    .leftCard .back{
+      transform:rotateY(180deg);
+    }
+    .gift{
+      width:39.2%;height:40%;
+      position:absolute;left:29.4%;top:40%;
+      background:
+        url('Data/wrap.png')
+        no-repeat;
+      background-size: 100% 100%;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .leftCard .gift{
+      background:none;
+    }
+    .blast {
+      -webkit-animation: blast 2s 1s;-ms-animation: blast 2s 1s;-moz-animation: blast 2s 1s;-o-animation: blast 2s 1s;
+      animation-fill-mode: forwards;
+    }
+    @-webkit-keyframes blast{
+      70%{transform: scale(0.7);opacity:1}
+      100%{
+        opacity:0;transform: scale(2);
+        visibility:hidden;
+      }
+    }
+    @-ms-keyframes blast{
+      70%{transform: scale(0.7);opacity:1}
+      100%{
+        opacity:0;transform: scale(2);
+        visibility:hidden;
+      }
+    }
+    @-o-keyframes blast{
+      70%{transform: scale(0.7);opacity:1}
+      100%{
+        opacity:0;transform: scale(2);
+        visibility:hidden;
+      }
+    }
+    @-moz-keyframes blast{
+      70%{transform: scale(0.7);opacity:1}
+      100%{
+        opacity:0;transform: scale(2);
+        visibility:hidden;
+      }
+    }
+    .rightCard{
+      width:50%;
+      background:rgba(255,255,255,0.5);
+      overflow:hidden;
+    }
+    .rightCard .centerText{
+      width:100%;height:90%;
+      position:relative;
+    }
+    .ribbon{
+      width:2%;height:100%;background:brown;
+      position:absolute;z-index:1;
+    }
+    .leftR{left:0;}
+    .rightR{
+      right:0;transform:rotateZ(180deg);
+    }
+    .ribbon .box{
+      height: calc(100% / 5);width:100%;
+
+    }
+    .b1{
+      -webkit-animation: box 10s infinite alternate;-ms-animation: box 10s infinite alternate;-moz-animation: box 10s infinite alternate;-o-animation: box 10s infinite alternate;
+    }
+    .b2{
+      -webkit-animation: box 10s 0.5s infinite alternate;-ms-animation: box 10s 0.5s infinite alternate;-moz-animation: box 10s 0.5s infinite alternate;-o-animation: box 10s 0.5s infinite alternate;
+    }
+    .b3{
+      -webkit-animation: box 10s 1s infinite alternate;-ms-animation: box 10s 1s infinite alternate;-moz-animation: box 10s 1s infinite alternate;-o-animation: box 10s 1s infinite alternate;
+    }
+    .b4{
+      -webkit-animation: box 10s 1.5s infinite alternate;-ms-animation: box 10s 1.5s infinite alternate;-moz-animation: box 10s 1.5s infinite alternate;-o-animation: box 10s 1.5s infinite alternate;
+    }
+    .b5{
+      -webkit-animation: box 10s 2s infinite alternate;-ms-animation: box 10s 2s infinite alternate;-moz-animation: box 10s 2s infinite alternate;-o-animation: box 10s 2s infinite alternate;
+    }
+    @-webkit-keyframes box{
+      0%{background:#543958}
+      20%{background:#a06060}
+      40%{background:#bea27b}
+      60%{background:#9ca898 }
+      80%{background:#506d8d}
+      100%{background:lightgrey}
+    }
+    @-ms-keyframes box{
+      0%{background:#543958}
+      20%{background:#a06060}
+      40%{background:#bea27b}
+      60%{background:#9ca898 }
+      80%{background:#506d8d}
+      100%{background:lightgrey}
+    }
+    @-moz-keyframes box{
+      0%{background:#543958}
+      20%{background:#a06060}
+      40%{background:#bea27b}
+      60%{background:#9ca898 }
+      80%{background:#506d8d}
+      100%{background:lightgrey}
+    }
+    @-o-keyframes box{
+      0%{background:#543958}
+      20%{background:#a06060}
+      40%{background:#bea27b}
+      60%{background:#9ca898 }
+      80%{background:#506d8d}
+      100%{background:lightgrey}
+    }
+    .rightCard .centerText .text{
+      width:100%;white-space:nowrap;
+      text-align:center;
+    }
+    .rightCard .centerText .greeting{
+      position:relative;top:60%;
+      transform:scale(0);
+      transition: transform 1s 2.3s , top 1s 2.3s;
+    }
+    .rightCard .centerText .greeting-pop{
+      top:15%;transform:scale(1);
+    }
+    .rightCard .centerText .name{
+      height:20%;
+      position:relative;top:60%;
+      display:table;transform:scale(0);
+      transition: transform 1s 2.3s, top 1s 2.3s;
+      border: 1px solid white;
+      border-left:none;border-right:none;
+    }
+    .rightCard .centerText .name span{
+      display:table-cell;
+      vertical-align:middle;
+    }
+    .rightCard .centerText .name-pop{
+      top:30%;transform:scale(1);
+      -webkit-animation: hover 0.8s 3.3s infinite alternate;
+      -ms-animation: hover 0.8s 3.3s infinite alternate;
+      -moz-animation: hover 0.8s 3.3s infinite alternate;
+      -o-animation: hover 0.8s 3.3s infinite alternate;
+    }
+    @-webkit-keyframes hover{
+      to{
+        height:30%;top:23%;
+        border-color: rgba(0,0,0,0.05)
+      }
+    }
+    @-moz-keyframes hover{
+      to{
+        height:30%;top:23%;
+        border-color: rgba(0,0,0,0.05)
+      }
+    }
+    @-ms-keyframes hover{
+      to{
+        height:30%;top:23%;
+        border-color: rgba(0,0,0,0.05)
+      }
+    }
+    @-o-keyframes hover{
+      to{
+        height:30%;top:23%;
+        border-color: rgba(0,0,0,0.05)
+      }
+    }
+
+    .rightCard .footer{
+      width:100%;height:10%;
+      background:rgba(255,255,255,0.1);
+      position:relative;display:table;
+    }
+    .rightCard .footer .text{
+      width:98%;white-space:nowrap;
+      text-align:right;
+      display:table-cell;vertical-align:bottom
+    }
+    .rightCard .footer .text{
+      width:98%;position:absolute;
+      bottom:10%;text-align:right;
+      white-space:nowrap;
+    }
+  </style>
+</head>
+<body>
+<div id="background"></div>
+<div class="wrap">
+  <div class="cardCont">
+    <div class="cards leftCard">
+      <div class="cardSides front">
+        <div class="cardColor posL"></div>
+        <div class="cardColor posR"></div>
+        <div class="cardColor posT"></div>
+        <div class="cardColor posB"></div>
+        <div class="gift"></div>
+      </div>
+      <div class="cardSides back">
+        <div class="cardColor posL"></div>
+        <div class="cardColor posR"></div>
+        <div class="cardColor posT"></div>
+        <div class="cardColor posB"></div>
+      </div>
+    </div>
+    <div class="cards rightCard">
+      <div class="gift"></div>
+      <div class="ribbon leftR">
+        <div class="box b1"></div>
+        <div class="box b2"></div>
+        <div class="box b3"></div>
+        <div class="box b4"></div>
+        <div class="box b5"></div>
+      </div>
+      <div class="ribbon rightR">
+        <div class="box b1"></div>
+        <div class="box b2"></div>
+        <div class="box b3"></div>
+        <div class="box b4"></div>
+        <div class="box b5"></div>
+      </div>
+      <div class="centerText">
+        <div class="text greeting">
+          Have a wonder day!
+        </div>
+        <div class="text name">
+          <span>Awesome Person</span>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="text regards">
+          Best regards from Lavneet
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script type="text/javascript">
+var Wwidth = screen.width, Wheight = screen.height
+, cons;
+var wrap = document.getElementsByClassName('wrap')[0],
+    gift=document.getElementsByClassName('gift'),
+    greeting=document.getElementsByClassName('greeting')[0],
+    namee=document.getElementsByClassName('name')[0], nameeFontSize=0, clickInc = 0;
+    footer=document.getElementsByClassName('regards')[0]
+    leftCardClass = document.querySelector('.leftCard');
+window.onload = function(){
+  cons = (Wwidth/Wheight)*0.95;
+  wrap.style.width = (wrap.offsetHeight*cons)+'px';
+  namee.style.fontSize= (0.105*window.innerHeight)+'px';
+  nameeFontSize = parseFloat(window.getComputedStyle(namee).fontSize);
+  greeting.style.fontSize = (0.8*nameeFontSize)+'px';
+  footer.style.fontSize = (0.38*nameeFontSize)+'px';
+}
+window.onresize = function(){
+  cons = (Wwidth/Wheight)*0.95;
+  wrap.style.width = (wrap.offsetHeight*cons)+'px';
+  namee.style.fontSize= (0.105*window.innerHeight)+'px';
+  nameeFontSize = parseFloat(window.getComputedStyle(namee).fontSize);
+  greeting.style.fontSize = (0.8*nameeFontSize)+'px';
+  footer.style.fontSize = (0.4*nameeFontSize)+'px';
+}
+gift[0].onclick = function(){
+  if (clickInc == 0){
+    leftCardClass.classList.toggle('card-open');
+    gift[1].className = "gift blast";
+    gift[0].style.cursor = 'default';
+    clickInc = 1;
+    greeting.className = "text greeting greeting-pop";
+    namee.className = "text name name-pop";
+  }
+}
+</script>
+
+</body>
+</html>
