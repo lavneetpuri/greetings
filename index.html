@@ -1,3 +1,25 @@
+<!-- 
+
+Uncomment the following code if php implementation is used together with index.php file.
+
+<?php
+
+  session_start();
+  
+  # Makes the greeting card inaccessible after 50 seconds. Requires password again.
+  
+  if(isset($_SESSION['loggedIn'])){
+    $loggedIn = $_SESSION['loggedIn'];$time = $_SESSION['time'];
+    if((!$loggedIn) || (time() > $time + 50)){
+      unset($_SESSION);
+      header('Location: index.php');
+      die();
+    }
+
+?>
+
+-->
+
 <!DOCTYPE html>
 
 <html>
