@@ -1,1 +1,1 @@
-Greet yourself at http://lavneet.gitlab.io/greeting-card ;)
+Greet yourself [here](https://lavneetpuri.github.io/greetings/index.html) ;)
